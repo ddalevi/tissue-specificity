@@ -1,0 +1,29 @@
+Here are the steps to reproduce the results of the modified Bayesian 
+approach presented in the manuscript "Combining evidence of preferential
+Gene-Tissue relationships from multiple sources". Not all datasets 
+that are in the manuscript are in here - only those that have replicates. 
+Also, you do not need to run any of the scripts that are in the 
+commonfiles directory.
+
+1. Create a folder and extract the content of 
+   Bayesian-tissue-specificity.rar. 
+1. For each of the human dataset folders (GDS595, GDS3113, GDS7307) 
+   run first simfile.R then the human_gene_specificity.R. 
+
+   E.g. for dataset gds3113 (on Linux):
+
+   > cd gds3113  
+   > R CMD BATCH simfile.r
+   > R CMD BATCH human_genes_specificity.r
+
+2. 
+
+
+   
+
+
+For any questions related to the implementation, please contact: 
+Sampath Padmanabhuni
+shanmukhasampath@gmail.com
+
+
