@@ -1,5 +1,5 @@
 #####Caculate SPM from TiSGeD database###############################
-#Please source this file before using ROKUspm.r or ROKU.r###########
+#Please source this file before using ROKUspm.r######################
 
 spm <- function(x){ #expression level for one gene
 
