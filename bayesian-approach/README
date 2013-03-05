@@ -7,7 +7,7 @@ commonfiles directory.
 
 1. Create a folder and extract the content of 
    Bayesian-tissue-specificity.rar. 
-1. For each of the dataset folders (GDS596, GDS3113, GSE7307, GSE952, GSE9954) 
+2. For each of the dataset folders (GDS596, GDS3113, GSE7307, GSE952, GSE9954) 
    run first simfile.R then the (human/mouse/rat)_gene_specificity.R. 
 
    E.g. for dataset gds3113 (on Linux):
@@ -16,10 +16,41 @@ commonfiles directory.
    > R CMD BATCH simfile.r
    > R CMD BATCH human_genes_specificity.r
 
-2. Before going to the folder (tissue_selective) run all five dataset folders.
+3. Before going to the folder (tissue_selective) run all five dataset folders.
 
+Description of folders:
 
-   
+COMMONFILES FOLDER:
+ 
+
+DATASET FOLDERS:
+ All five dataset folders contain two files one is "simfile.R" and "gene_specificity.R".
+ The file "simfile.R" calculates Tissue Selective case for each probeset in the dataset.
+ The Tissue Selective cases are represented by numbers (1-4):
+
+   Tissue Specific Case - 1
+   2-Selective Case     - 2
+   3-Selective Case     - 3
+   4-Selective Case     - 4
+
+ If a probeset in a dataset is 4-Selective then the top 4 higly expressed tissues are
+ represented by value 4 and rest of the tissues are represented by 0. Similarly for 
+ other tissue selective cases. The output of the "simfile.R" is stored in to "gene_specificity_final.txt".
+ Sample of "gene_specificty_final.txt" file:
+   GENESYMBOL  PROBESET TISSUE-1  TISSUE-2  ...   TISSUE-N
+   CASP14   139705   0  0  ...   1  0  ...   0 # Tissue Specific Case (one tissue)
+   FAM55D   122996   0  0  0  4  0  ...   4  4  4  0  ...   0 # 4-Selective case (four tissues)
+
+ The file "gene_specificity.R" works on the output from "simfile.R" and writes list of tissue specific
+ genes in to "dataset_specific.txt" file and similary for other tissue selective cases. The file
+ "gene_specificity.R" creates four files for each dataset:
+
+   (h/m/r)datasetnumber_specific.txt # contains gene symbols which are tissue specific
+   (h/m/r)datasetnumber_2sel.txt # contains gene symbols which are 2-selective
+   (h/m/r)datasetnumber_3sel.txt # contains gene symbols which are 3-selective
+   (h/m/r)datasetnumber_4sel.txt # contains gene symbols which are 4-selective 
+
+ h is human, m is mouse and r is rat.
 
 
 For any questions related to the implementation, please contact: 
