@@ -20,38 +20,57 @@ commonfiles directory.
 
 Description of folders:
 
-COMMONFILES FOLDER:
- 
+ commonfiles folder:
+   The files in this folder calculates Bayes Factor for all Tissue Selective cases.
+   
+      "BF.R" # calculates the Bayes Factor for Tissue Specific case
+      "BFN.R" # calculates the Bayes Factor for 2-Selective case
+      "BFN3.R" # calculates the Bayes Factor for 3-Selective case
+      "BFN4.R" # calculates the Bayes Factor for 4-Selective case
 
-DATASET FOLDERS:
- All five dataset folders contain two files one is "simfile.R" and "gene_specificity.R".
- The file "simfile.R" calculates Tissue Selective case for each probeset in the dataset.
- The Tissue Selective cases are represented by numbers (1-4):
+   The file "RMDUP.R" removes duplicate gene symbols in a dataset. The file "RMDUP1.R" removes 
+   duplicate gene symbols in all five datasets by considering case sensitivity. The file "OVP.R" 
+   calculates the overlap of gene symbols in two datasets.
 
-   Tissue Specific Case - 1
-   2-Selective Case     - 2
-   3-Selective Case     - 3
-   4-Selective Case     - 4
+ dataset folders:
+   All five dataset folders (GDS596, GDS3113, GSE7307, GSE952, GSE9954) contain two files one is 
+   "simfile.R" and "gene_specificity.R". The file "simfile.R" calculates Tissue Selective case
+   for each probeset in the dataset. The Tissue Selective cases are represented by numbers (1-4):
 
- If a probeset in a dataset is 4-Selective then the top 4 higly expressed tissues are
- represented by value 4 and rest of the tissues are represented by 0. Similarly for 
- other tissue selective cases. The output of the "simfile.R" is stored in to "gene_specificity_final.txt".
- Sample of "gene_specificty_final.txt" file:
-   GENESYMBOL  PROBESET TISSUE-1  TISSUE-2  ...   TISSUE-N
-   CASP14   139705   0  0  ...   1  0  ...   0 # Tissue Specific Case (one tissue)
-   FAM55D   122996   0  0  0  4  0  ...   4  4  4  0  ...   0 # 4-Selective case (four tissues)
+      Tissue Specific Case - 1
+      2-Selective Case     - 2
+      3-Selective Case     - 3
+      4-Selective Case     - 4
 
- The file "gene_specificity.R" works on the output from "simfile.R" and writes list of tissue specific
- genes in to "dataset_specific.txt" file and similary for other tissue selective cases. The file
- "gene_specificity.R" creates four files for each dataset:
+   If a probeset in a dataset is 4-Selective then the top 4 higly expressed tissues are represented 
+   by value 4 and rest of the tissues are represented by 0. Similarly for other tissue selective cases. 
+   The output of the "simfile.R" is stored in to "gene_specificity_final.txt". 
+   Sample of "gene_specificty_final.txt" file:
+      GENESYMBOL  PROBESET TISSUE-1  TISSUE-2  ...   TISSUE-N
+      CASP14   139705   0  0  ...   1  0  ...   0 # Tissue Specific Case (one tissue)
+      FAM55D   122996   0  0  0  4  0  ...   4  4  4  0  ...   0 # 4-Selective case (four tissues)
 
-   (h/m/r)datasetnumber_specific.txt # contains gene symbols which are tissue specific
-   (h/m/r)datasetnumber_2sel.txt # contains gene symbols which are 2-selective
-   (h/m/r)datasetnumber_3sel.txt # contains gene symbols which are 3-selective
-   (h/m/r)datasetnumber_4sel.txt # contains gene symbols which are 4-selective 
+   The file "gene_specificity.R" works on the output from "simfile.R" and writes list of tissue specific
+   genes in to "dataset_specific.txt" file and similary for other tissue selective cases. The file
+   "gene_specificity.R" creates four files for each dataset:
 
- h is human, m is mouse and r is rat.
+      (h/m/r)datasetnumber_specific.txt # contains gene symbols which are tissue specific
+      (h/m/r)datasetnumber_2sel.txt # contains gene symbols which are 2-selective
+      (h/m/r)datasetnumber_3sel.txt # contains gene symbols which are 3-selective
+      (h/m/r)datasetnumber_4sel.txt # contains gene symbols which are 4-selective 
 
+   h is human, m is mouse and r is rat.
+
+ tissue_selective folder:
+   The file "tissue_specific.R" calculates the overlap of Tissue Specific genes in all five datasets
+   by removing the duplicate gene symbols.
+   The file "tissue_2sel.R" calculates the overlap of 2-Selective genes in all five datasets by 
+   removing the duplicate gene symbols.
+   The file "tissue_3sel.R" calculates the overlap of 3-Selective genes in all five datasets by 
+   removing the duplicate gene symbols.
+   The file "tissue_4sel.R" calculates the overlap of 4-Selective genes in all five datasets by 
+   removing the duplicate gene symbols.
+   
 
 For any questions related to the implementation, please contact: 
 Sampath Padmanabhuni
