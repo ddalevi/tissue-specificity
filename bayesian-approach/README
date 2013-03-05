@@ -7,8 +7,8 @@ commonfiles directory.
 
 1. Create a folder and extract the content of 
    Bayesian-tissue-specificity.rar. 
-1. For each of the human dataset folders (GDS595, GDS3113, GDS7307) 
-   run first simfile.R then the human_gene_specificity.R. 
+1. For each of the dataset folders (GDS596, GDS3113, GSE7307, GSE952, GSE9954) 
+   run first simfile.R then the (human/mouse/rat)_gene_specificity.R. 
 
    E.g. for dataset gds3113 (on Linux):
 
@@ -16,7 +16,7 @@ commonfiles directory.
    > R CMD BATCH simfile.r
    > R CMD BATCH human_genes_specificity.r
 
-2. 
+2. Before going to the folder (tissue_selective) run all five dataset folders.
 
 
    
