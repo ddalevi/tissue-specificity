@@ -17,18 +17,13 @@ m9954_2sel <- RMDUP(m9954)
 r952_2sel <- RMDUP(r952)
 
 temp <- list(h3113_2sel,h596_2sel,h7307_2sel,m9954_2sel,r952_2sel)
-#THE LOWER DIAGNOL OF MATRIX IS FILLED WITH OVERLAP BETWEEN DATASETS
+#THE LOWER DIAGONAL OF MATRIX IS FILLED WITH OVERLAP BETWEEN DATASETS
 for(i in 1:nrow(sel2_overlap)){
       for(j in 1:ncol(sel2_overlap)){
-            #if(i!=j && (i > j)){
-            #if(i > j){
-                 #sel2_overlap[i,j] <- OVP(as.matrix(temp[[i]]),as.matrix(temp[[j]]))
-            #}
             if(i == j){
                  sel2_overlap[i,j] <- 1
             }
             if(i > j){
-                 #sel2_overlap[i,j] <- sel2_overlap[j,i]
                  sel2_overlap[j,i] <- OVP(as.matrix(temp[[i]]),as.matrix(temp[[j]]))
             }
       }
@@ -41,8 +36,6 @@ for(i in 1:nrow(sel2_overlap)){
             }
       }
 }
-
-#temp <- rbind(toupper(h3113_specific),toupper(h596_specific),toupper(h7307_specific),toupper(m9954_specific),toupper(r952_specific))
 temp1 <- rbind(h3113_2sel,h596_2sel,h7307_2sel,m9954_2sel,r952_2sel)
 temp2 <- RMDUP1(temp1)
 temp1 <- temp2
