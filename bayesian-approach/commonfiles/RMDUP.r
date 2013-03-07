@@ -1,3 +1,4 @@
+#REMOVES THE DUPLICATE GENE SYMBOLS IN A DATASET AND RETURNS UNIQUE GENE SYMBOL LIST
 RMDUP <- function(DATA){
  tdata <- DATA
  temp <- matrix()
@@ -63,9 +64,6 @@ RMDUP <- function(DATA){
   }
   tdata <- as.matrix(tdata)
   for(i in 1:length(temp)){
-      #if(length(temp[[i]]) > 1){
-      #      temp[[i]] <- paste(temp[[i]],collapse="///")
-      #}
       for(j in 1:length(temp[[i]])){
             tdata <- rbind(tdata,as.matrix(temp[[i]][j]))
       }
