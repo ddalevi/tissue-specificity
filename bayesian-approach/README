@@ -34,8 +34,9 @@ Description of folders:
 
  dataset folders:
    All five dataset folders (GDS596, GDS3113, GSE7307, GSE952, GSE9954) contain two files one is 
-   "simfile.R" and "gene_specificity.R". The file "simfile.R" calculates Tissue Selective case
-   for each probeset in the dataset. The Tissue Selective cases are represented by numbers (1-4):
+   "simfile.R" and "gene_specificity.R" along with the data and its annotation files. The file 
+   "simfile.R" calculates Tissue Selective case for each probeset in the dataset. The Tissue 
+   Selective cases are represented by numbers (1-4):
 
       Tissue Specific Case - 1
       2-Selective Case     - 2
