@@ -28,7 +28,7 @@ for(i in 1:nrow(specific_overlap)){
             }
       }
 }
-#TJE UPPER DIAGONAL OF MATRIX IS FILLED WITH PERCENTAGE OVERLAP BETWEEN DATASETS
+#THE UPPER DIAGONAL OF MATRIX IS FILLED WITH PERCENTAGE OVERLAP BETWEEN DATASETS
 for(i in 1:nrow(specific_overlap)){
       for(j in 1:ncol(specific_overlap)){
             if(i < j){
