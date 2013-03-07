@@ -48,8 +48,7 @@ for(i in 1:length(ldata)){
       }
 }
 tdata <- tdata[-(which(tdata=="Inf",arr.ind=TRUE)[,1]),]
-rm(ldata)
-rm(ndata)
+rm(ldata,ndata)
 h_gse_data <- split(tdata,1:nrow(tdata))
 rm(tdata)
 #PRINT THE FINAL PROBESETS TO A FILE
