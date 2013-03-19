@@ -1,11 +1,12 @@
+#BAYES FACTOR FOR TISSUE SPECIFIC CASE
 BF<-function(DATA,nrreplics,updown,nrruns,cutvalue)
 {
 	cutval <- cutvalue
 	nrprobesets<-nrow(DATA)
 	nrarrays<-ncol(DATA)
 	nrconditions<-length(nrreplics)
+	#IN TISSUE SPECIFIC CASE TOP MOST HIGHLY EXPRESSED TISSUE IS CONSIDERED FOR ALL PROBESETS
 	target <- matrix(rep(0,nrprobesets*1),nrow=nrprobesets,ncol=1)
-	#SIGNDIFF <- matrix(rep(0,nrprobesets*(nrconditions-1)),nrow=nrprobesets,ncol=(nrconditions-1))
 	SIGNDIFF <- matrix(rep(0,nrprobesets),nrow=nrprobesets)
 
 	#Preliminary: Calculation of condition-specific averages for all probesets
@@ -32,7 +33,7 @@ BF<-function(DATA,nrreplics,updown,nrruns,cutvalue)
         AV3[i,] <- t(temp)
   }
   s_d <- sd(t(AV3),na.rm=FALSE)
-	#2. Gibbs Sampler
+	#2. Gibbs Sampler to calculate f1
 	indicsum<-rep(0,nrprobesets)
 	NRREPLICS<-rep(1,nrprobesets)%*%t(nrreplics)
 	MU_SAMPLED2<-matrix(rep(0,nrprobesets*nrarrays),nrow=nrprobesets)
@@ -58,11 +59,8 @@ BF<-function(DATA,nrreplics,updown,nrruns,cutvalue)
         for(k in (1:nrprobesets)){
             TEMP <- TEMP_MU_SAMPLED[k,-(target[k,1])]
             TEMP <- t(TEMP)
-            #SIGNDIFF[k,] <-updown*sign((MU_SAMPLED[k,target[k,1]] - (cutval * s_d[k]))%*%t(rep(1,nrconditions-1)) - TEMP)
             SIGNDIFF[k] <-updown*sign(MU_SAMPLED[k,target[k,1]] - (cutval * s_d[k] + max(TEMP)[1]))
         }
-    		#SIGNDIFF<-updown*sign((MU_SAMPLED[,target] - (2*s_d)) %*% t(rep(1,(nrconditions-1)))- TEMP)
-    		#indic<-rowSums(SIGNDIFF,2)==(nrconditions-1)
     		indic <- (SIGNDIFF) == 1
     		indicsum<-indicsum+indic
     		df<-nrarrays-2
@@ -71,6 +69,7 @@ BF<-function(DATA,nrreplics,updown,nrruns,cutvalue)
    		  sigma2_sampled<-nscale*chisqvals^(-1)
     		SIGMA2_SAMPLED<-sigma2_sampled%*%t(rep(1,nrconditions))
 	}
+	#CALCULATION OF BAYES FACTOR
 	f1<-indicsum/nrruns
 	f2<-1-f1
 	BF<-nrconditions*f1/((nrconditions/(nrconditions-1))*f2)
