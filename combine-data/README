@@ -1,0 +1,21 @@
+In order to combine and calculate total score, 
+run the script called combine-data on the files 
+you want to combine (containing inner scores).
+
+E.g. Combine all 5 datasets:
+linux> ./combine-data.pl inner_bg.txt  inner_gse7307.txt  inner_gz.txt  inner_log3113.txt  inner_log596.txt  
+
+E.g. combine 4 of the datasets (not including GeAZr):
+linux> ./combine-data.pl inner_bg.txt  inner_gse7307.txt inner_log3113.txt  inner_log596.txt  
+
+
+The file results.txt contains the results and have the following columns (in order):
+1. Gene name (alt probeset name)
+2. Coverate (how many datasets, if you have n datasets, 
+   the max is n. You can sort on this number using the 
+   unix sort command:
+   linux> sort -k3 -nr results.txt
+3. Tissue 1 (name)
+4. Score 1
+5. Tissue 2 (name), only if 2-selective.
+6. Score 2, only if 2-selective.
