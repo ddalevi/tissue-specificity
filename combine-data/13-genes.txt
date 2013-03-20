@@ -1,0 +1,51 @@
+These steps will produce the results of the 13 genes in Table 7, 
+Table S11a and Table S11b. The analysis below will provide two 
+results files, one with all datasets (results_all.txt) and one 
+with all except the GeAZr dataset (results-gz).
+
+1. Combine all datasets.
+linux>./combine-data.pl inner_bg.txt inner_gse7307.txt inner_log3113.txt inner_log596.txt inner_gz.txt  
+
+
+2. Rename the result file.
+linux>mv results.txt results_all.txt
+
+3. Combine all except GeAZr data.
+linux>./combine-data.pl inner_bg.txt inner_gse7307.txt inner_log3113.txt inner_log596.txt 
+
+4. Rename the result file.
+linux>mv results.txt results-gz.txt
+
+5. Grep out the genes from results_all.txt.
+linux>egrep -w ATP4A\|SCN5A\|PNLIP\|LIPF\|TPO\|SLC5A2\|CRP\|KLK3\|TNNT2\|TG\|SLC26A4\|IYD\|TSHR results_all.txtKLK3    5       Prostate        0.95    Urethra 0.05
+SLC26A4 5       Thyroid 0.8
+LIPF    5       SmallIntestine  0.3     Stomach 0.2     Small.intestine 0.1     Spinal.cord     0.1     Stomache        0.1
+CRP     5       Liver   0.5     Pancreas        0.2     SmallIntestine  0.1
+PNLIP   5       Pancreas        0.8     Bile    0.1     SmallIntestine  0.1
+SCN5A   5       Heart   0.6
+TPO     5       Thyroid 1
+SLC5A2  5       Kidney  0.8
+ATP4A   5       Adrenal 0.4     Stomache        0.2     Stomach 0.2
+TSHR    5       Thyroid 0.9     Thymus  0.1
+TNNT2   5       Heart   1
+IYD     1       Thyroid 1
+TG      5       Thyroid 1
+
+
+
+5. Grep out the genes from resuls-gz.txt.
+linux>egrep -w ATP4A\|SCN5A\|PNLIP\|LIPF\|TPO\|SLC5A2\|CRP\|KLK3\|TNNT2\|TG\|SLC26A4\|IYD\|TSHR results-gz.txt
+KLK3    4       Prostate        0.9375  Urethra 0.0625
+SLC26A4 4       Thyroid 0.75
+LIPF    4       SmallIntestine  0.375   Small.intestine 0.125   Spinal.cord     0.125   Stomache        0.125
+CRP     4       Liver   0.375   Pancreas        0.25    SmallIntestine  0.125
+PNLIP   4       Pancreas        0.875   SmallIntestine  0.125
+SCN5A   4       Heart   0.5
+TPO     4       Thyroid 1
+SLC5A2  4       Kidney  0.75
+ATP4A   4       Adrenal 0.5     Stomache        0.25
+TSHR    4       Thyroid 0.875   Thymus  0.125
+TNNT2   4       Heart   1
+TG      4       Thyroid 1
+
+
