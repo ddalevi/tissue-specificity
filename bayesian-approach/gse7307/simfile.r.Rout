@@ -1,0 +1,52 @@
+
+R version 2.15.1 (2012-06-22) -- "Roasted Marshmallows"
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ###########################################################################################################
+> #READING THE ANNOTATION GPL570.annot FILE FOR HUMAN GSE7307 DATASET TO GET THE PROBESETS WITH FULL ANNOTATION.
+> #PROBESETS WITH NO REFERENCE TO GENE SYMBOLS ARE NOT CONSIDERED.
+> DATA <- strsplit(readLines("GPL570.annot",n=-1,ok=TRUE,warn=TRUE),"\n")
+> ndata <- matrix(rep(0,length(DATA)*2),nrow=length(DATA),ncol=2)
+> for(i in 1:length(DATA)){
++      if(regexpr("^([0-9A])",DATA[[i]],perl=TRUE) == TRUE){
++           if(strsplit(DATA[[i]],"\t")[[1]][3] == ""){
++               ndata[i,2] <- as.matrix(strsplit(DATA[[i]],"\t")[[1]][1])
++               ndata[i,1] <- Inf
++           }
++           else{
++               ndata[i,2] <- as.matrix(strsplit(DATA[[i]],"\t")[[1]][1])
++               ndata[i,1] <- as.matrix(strsplit(DATA[[i]],"\t")[[1]][3])
++           }
++      }
++ }
+> ndata <- ndata[-which(ndata == "Inf", arr.ind=TRUE)[,1],]
+> ndata <- ndata[-which(ndata == "0", arr.ind=TRUE)[,1],]
+> rm(DATA)
+> #COMBINING ALL PROBESETS OF A GENE
+> ldata <- split(ndata,1:nrow(ndata))
+> for(i in 1:length(ldata)){
++       count <- 3
++       for(j in i:length(ldata)){
++           if((ldata[[i]][1] == ldata[[j]][1]) && (ldata[[i]][1] != "NULL") && (i!=j)){
++               ldata[[i]][count] <- ldata[[j]][2]
++               ldata[[j]][1] <- "NULL"
++               count <- count + 1
++           }
++       }
++ }
