@@ -199,8 +199,8 @@ probe_number = as.matrix(read.table("probe_number_human_gds596.txt",comment.char
 DATA = matrix(rep(0,length(probe_number)*ncol(ndata)),nrow=length(probe_number))
 row.names(DATA) <- probe_number
 for(i in 1:length(probe_number)){
-	for(j in 1:length(row.names(data))){
-		if(probe_number[i] == row.names(data)[j]){
+	for(j in 1:length(row.names(ndata))){
+		if(probe_number[i] == row.names(ndata)[j]){
        DATA[i,] <- ndata[j,]
 		}
 	}
