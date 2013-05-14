@@ -98,6 +98,7 @@ BFN<-function(DATA,nrreplics,updown,nrruns,cutvalue)
     	     
     	     SIGNDIFF[k] <- updown*sign(MU_SAMPLED[k,target[k,2]] - (cutval * s_d[k] + max(TEMP2)[1]))
        }
+    }	
       
     indic <- (SIGNDIFF) == 1
 		indicsum<-indicsum+indic
