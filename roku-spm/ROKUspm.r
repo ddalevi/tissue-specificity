@@ -2,8 +2,9 @@
 #############################################################
 
 #Please source the "shannon.entropy" and "spm" function first. 
-   source("/.../code/Shannon_Entropy.r")
-   source("/.../code/spm.r")
+#Or use source(".../ROKUspm.r",chdir =TRUE)
+   source("Shannon_Entropy.r")
+   source("spm.r")
    
 ################ROKU#########################################
 ##log(n!)####################################################
